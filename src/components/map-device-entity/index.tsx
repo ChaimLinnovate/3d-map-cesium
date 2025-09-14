@@ -69,24 +69,24 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
 
   // ---
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(movePointRandomly, 3000);
-  //   // Cleanup function to clear the interval when the component unmounts
-  //   return () => clearInterval(intervalId);
-  // }, []); // Empty dependency array ensures this effect runs only once
+  useEffect(() => {
+    const intervalId = setInterval(movePointRandomly, 3000);
+    // Cleanup function to clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array ensures this effect runs only once
 
-  // // Memoize sanitizedPoint to ensure referential stability
-  // const memoizedSanitizedPoint = useMemo(() => {
-  //   const cartographic = Cartographic.fromDegrees(point.lon, point.lat, 0);
-  //   const heightGlobe = viewer
-  //     ? viewer.scene.globe.getHeight(cartographic)
-  //     : 0;
+  // Memoize sanitizedPoint to ensure referential stability
+  const memoizedSanitizedPoint = useMemo(() => {
+    const cartographic = Cartographic.fromDegrees(point.lon, point.lat, 0);
+    const heightGlobe = viewer
+      ? viewer.scene.globe.getHeight(cartographic)
+      : 0;
 
-  //   return {
-  //     ...point,
-  //     hae: point.hae ? point.hae + (heightGlobe ?? 0) : 0,
-  //   };
-  // }, [point, viewer]);
+    return {
+      ...point,
+      hae: point.hae ? point.hae + (heightGlobe ?? 0) : 0,
+    };
+  }, [point, viewer]);
 
   return (
     <>
