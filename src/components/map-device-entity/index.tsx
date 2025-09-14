@@ -31,12 +31,12 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
     vfov: 20,
     range: point.hae + 700,
     azimuth: 0,
-    elevation: -45,
+    elevation: -25,
   }
 
   const { viewer } = useCesium();
 
-  const getRandomDelta = (maxDelta = 0.005) => (Math.random() - 0.5) * 2 * maxDelta;
+  const getRandomDelta = () => (Math.random() - 0.9) * 0.00001;
 
   const movePointRandomly = () => {
     setPoint((prevPoint) => {
@@ -49,12 +49,12 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
       if (random < 0.5) {
         newLat += getRandomDelta();
       }
-      // if (random < 0.8) {
-      //   newLon += getRandomDelta();
-      // }
-      // if (random < 0.9) {
-      //   newHae += getRandomDelta();
-      // }
+      if (random < 0.8) {
+        newLon += getRandomDelta();
+      }
+      if (random < 0.9) {
+        newHae += getRandomDelta();
+      }
 
       return {
         ...prevPoint,
@@ -69,24 +69,24 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
 
   // ---
 
-  useEffect(() => {
-    const intervalId = setInterval(movePointRandomly, 1000);
-    // Cleanup function to clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures this effect runs only once
+  // useEffect(() => {
+  //   const intervalId = setInterval(movePointRandomly, 3000);
+  //   // Cleanup function to clear the interval when the component unmounts
+  //   return () => clearInterval(intervalId);
+  // }, []); // Empty dependency array ensures this effect runs only once
 
-  // Memoize sanitizedPoint to ensure referential stability
-  const memoizedSanitizedPoint = useMemo(() => {
-    const cartographic = Cartographic.fromDegrees(point.lon, point.lat, 0);
-    const heightGlobe = viewer
-      ? viewer.scene.globe.getHeight(cartographic)
-      : 0;
+  // // Memoize sanitizedPoint to ensure referential stability
+  // const memoizedSanitizedPoint = useMemo(() => {
+  //   const cartographic = Cartographic.fromDegrees(point.lon, point.lat, 0);
+  //   const heightGlobe = viewer
+  //     ? viewer.scene.globe.getHeight(cartographic)
+  //     : 0;
 
-    return {
-      ...point,
-      hae: point.hae ? point.hae + (heightGlobe ?? 0) : 0,
-    };
-  }, [point, viewer]);
+  //   return {
+  //     ...point,
+  //     hae: point.hae ? point.hae + (heightGlobe ?? 0) : 0,
+  //   };
+  // }, [point, viewer]);
 
   return (
     <>

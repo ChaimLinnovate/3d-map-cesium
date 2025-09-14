@@ -5,8 +5,8 @@ import { SensorShadow } from './SensorShadowLogic';
 import { FOV_ALPHA_SELECTED } from './constants/mapDevice';
 
 const SHADER_URL = '/shaders/SensorShadow.fragment.shader.glsl';
-const DEFAULT_RANGE = 1000;
-const MAX_CAMERA_DISTANCE = 2000; // meters
+const DEFAULT_RANGE = 4000;
+const MAX_CAMERA_DISTANCE = 5000; // meters
 
 interface Point {
   lat: number;
@@ -73,15 +73,15 @@ export const SensorShadowArea = ({
       viewAreaColor:
         Color.fromCssColorString('#7FFF00').withAlpha(FOV_ALPHA_SELECTED),
       shadowAreaColor: Color.RED.withAlpha(FOV_ALPHA_SELECTED),
-      alpha: 0.3,
-      shadowAlpha: 0.4,
+      alpha: 0.5,
+      shadowAlpha: 0.5,
       depthBias: 0.0001,
       sensorParameters: {
         hfov: memoizedCurrentViewSensorInfo.hfov,
         vfov: memoizedCurrentViewSensorInfo.vfov,
         range: memoizedCurrentViewSensorInfo.range ?? DEFAULT_RANGE,
         azimuth: memoizedCurrentViewSensorInfo.azimuth,
-        elevation: memoizedCurrentViewSensorInfo.elevation, // Fixed: removed double negation
+        elevation: -memoizedCurrentViewSensorInfo.elevation, // Fixed: removed double negation
       },
     };
   }, [cameraPosition, memoizedCurrentViewSensorInfo]);

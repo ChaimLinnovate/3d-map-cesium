@@ -5,9 +5,9 @@ import { MapDeviceEntity } from "./map-device-entity";
 
 
 
-const p = { lat: 40.7831, lon: -73.9654, hae: 250 }
-const p1 = { lat: 40.7841, lon: -73.9654, hae: 700 }
-const p2 = { lat: 40.7851, lon: -73.9654, hae: 520 }
+const p = { lat: 40.7331, lon: -73.9844, hae: 50 }
+const p1 = { lat: 40.7941, lon: -73.9354, hae: 100 }
+const p2 = { lat: 40.7951, lon: -73.9664, hae: 220 }
 
 
 const CesiumMap = () => {
@@ -18,7 +18,7 @@ const CesiumMap = () => {
     } else {
         console.warn('Cesium Ion Token is missing! 3D Tilesets might not load.');
     }
-    const cameraPositions = Cartesian3.fromDegrees(-73.9654, 40.7831, 1500)
+    const cameraPositions = Cartesian3.fromDegrees(-73.9654, 40.7831, 2500)
     const terrainProvider = cesiumIonToken && CesiumTerrainProvider.fromIonAssetId(1);
 
     return (
@@ -38,7 +38,7 @@ const CesiumMap = () => {
                 destination={cameraPositions}
                 duration={2}
                 orientation={{
-                    heading: 0,
+                    heading: 2.0,
                     pitch: -Math.PI / 10,
                     roll: 0
                 }}
