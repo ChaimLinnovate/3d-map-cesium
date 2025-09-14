@@ -49,14 +49,14 @@ const CesiumMap = () => {
             <MapDeviceEntity point={p2} />
             <MapDeviceEntity point={p} />
 
-            <Cesium3DTileset
+            {/* <Cesium3DTileset
                 url={IonResource.fromAssetId(96188)}
                 onError={(error) =>
                     console.error('Failed to load buildings tileset:', error)
                 }
-            />
+            /> */}
             <Cesium3DTileset
-                url={IonResource.fromAssetId(3135461)}
+                url={IonResource.fromAssetId(2275207)}
                 onError={(error) =>
                     console.error('Failed to load terrain tileset:', error)
                 }
