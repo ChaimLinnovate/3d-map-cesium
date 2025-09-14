@@ -74,7 +74,7 @@ export const SensorShadowArea = ({
         Color.fromCssColorString('#7FFF00').withAlpha(FOV_ALPHA_SELECTED),
       shadowAreaColor: Color.RED.withAlpha(FOV_ALPHA_SELECTED),
       alpha: 0.3,
-      shadowAlpha: 0.0,
+      shadowAlpha: 0.4,
       depthBias: 0.0001,
       sensorParameters: {
         hfov: memoizedCurrentViewSensorInfo.hfov,

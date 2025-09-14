@@ -28,8 +28,8 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
 
   const currentViewSensorInfo = {
     hfov: 60,
-    vfov: 40,
-    range: point.hae + 100,
+    vfov: 20,
+    range: point.hae + 700,
     azimuth: 0,
     elevation: -45,
   }
@@ -49,12 +49,12 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
       if (random < 0.5) {
         newLat += getRandomDelta();
       }
-      if (random < 0.8) {
-        newLon += getRandomDelta();
-      }
-      if (random < 0.9) {
-        newHae += getRandomDelta();
-      }
+      // if (random < 0.8) {
+      //   newLon += getRandomDelta();
+      // }
+      // if (random < 0.9) {
+      //   newHae += getRandomDelta();
+      // }
 
       return {
         ...prevPoint,
@@ -93,7 +93,7 @@ export const MapDeviceEntity = ({ point: initialPoint }: { point: Point }) => {
       <Entity
         name="My Marker"
         position={Cartesian3.fromDegrees(point.lon, point.lat, point.hae)}
-        point={{ pixelSize: 15, color: Color.RED }}
+      // point={{ pixelSize: 15, color: Color.RED }}
       >
         <ModelGraphics
           uri={MODEL_CONFIG.uri}
